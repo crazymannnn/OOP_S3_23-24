@@ -62,5 +62,7 @@ public class Lab2 {
         company.Input();
         company.Sort();
         company.Output();
+        //company.OutputHighest();
+        
     }
 }

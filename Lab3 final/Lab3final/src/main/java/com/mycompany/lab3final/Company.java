@@ -64,4 +64,53 @@ public class Company {
             System.out.println("----------------");
         }
     }
+    
+    public void SearchByID() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ID ban muon tim: ");
+        String s = sc.next();
+        for (int i = 0; i < fulltimes.size(); i++) {
+            if (fulltimes.get(i).getId().equals(s)) {
+                fulltimes.get(i).OutputFullTime();
+                break;
+            }
+        }
+        
+        for (int i = 0; i < parttimes.size(); i++) {
+            if (parttimes.get(i).getId().equals(s)) {
+                parttimes.get(i).OutputPartTime();
+                break;
+            }
+        }
+    }
+    
+    public void DeleteByID() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ID ban muon xoa: ");
+        String s = sc.next();
+        for (int i = 0; i < fulltimes.size(); i++) {
+            if (fulltimes.get(i).getId().equals(s)) {
+                fulltimes.remove(fulltimes.get(i));
+                break;
+            }
+        }
+        
+        for (int i = 0; i < parttimes.size(); i++) {
+            if (parttimes.get(i).getId().equals(s)) {
+                parttimes.remove(parttimes.get(i));
+                break;
+            }
+        }
+    }
+    
+    public void Edit() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ID ban muon edit: ");
+        String s = sc.next();
+        for (int i = 0; i < fulltimes.size(); i++) {
+            if (fulltimes.get(i).getId().equals(s)) {
+                
+            }
+        }
+    }
 }

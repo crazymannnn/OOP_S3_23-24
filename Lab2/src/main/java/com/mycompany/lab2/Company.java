@@ -45,24 +45,33 @@ public class Company {
     }
     
     public void OutputHighest() {
+        var result = new ArrayList<Employee>();
         var max = lists.get(0).getBasicSalary() * lists.get(0).getSalaryCoefficient();
-        var temp = 0;
         for (int i = 0; i < lists.size(); i++) {
             var total = lists.get(i).getBasicSalary() * lists.get(i).getSalaryCoefficient();
             if (total > max) {
                 max = total;
-                temp = i;
             }
         }
-        System.out.println("People who have the highest salary is: ");
-        lists.get(temp).OutputEmploy();
-        System.out.println("Salary: " + max);
+        
+        for (int i = 0; i < lists.size(); i++) {
+            var total = lists.get(i).getBasicSalary() * lists.get(i).getSalaryCoefficient();
+            if (total == max) {
+                result.add(lists.get(i));
+            }
+        }
+        System.out.println("People who have the highest salary are: ");
+        for (int i = 0; i < result.size(); i++) {
+            result.get(i).OutputEmploy();
+            System.out.println("Salary is: " + max);
+            System.out.println("-------------------------");
+        }
     }
     
     Comparator<Employee> com = new Comparator<Employee>() {
         @Override
         public int compare(Employee o1, Employee o2) {
-            return (int)(o1.getBasicSalary()*o1.getSalaryCoefficient() - o2.getBasicSalary()*o2.getSalaryCoefficient());
+            return (int)(o2.getBasicSalary()*o2.getSalaryCoefficient() - o1.getBasicSalary()*o1.getSalaryCoefficient());
         }
     };
     

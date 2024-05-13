@@ -158,4 +158,42 @@ public class Company {
             }
         }
     }
+
+    public void SearchByPayment() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap payment ban muon tim: ");
+        var n = sc.nextFloat();
+        for (int i = 0; i < fulltimes.size(); i++) {
+            if (fulltimes.get(i).getPayment() == n) {
+                fulltimes.get(i).getInfo();
+                break;
+            }
+        }
+        for (int i = 0;  i< parttimes.size(); i++) {
+            if (parttimes.get(i).getPayment() == n) {
+                parttimes.get(i).getInfo();
+                break;
+            }
+        }
+    }
+
+    public void SortFullTime() {
+        fulltimes.sort((s1, s2) -> {
+            var compare = Integer.compare(s2.getYear(), s1.getYear());
+            if (compare == 0) {
+                compare = Float.compare(s1.getPayment(), s2.getPayment());
+            }
+            return compare;
+        });
+    }
+
+    public void SortPartTime() {
+        parttimes.sort((s1, s2) -> {
+            var compare = Integer.compare(s2.getYear(), s1.getYear());
+            if (compare == 0) {
+                compare = Float.compare(s1.getPayment(), s2.getPayment());
+            }
+            return compare;
+        });
+    }
 }

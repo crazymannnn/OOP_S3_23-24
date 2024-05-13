@@ -18,8 +18,13 @@ public class Lab3final {
         //store.Output();
         
         
-        Company company = new Company();
-        company.AddFullTime();
-        company.ShowAllFull();
+        //FullTimeEmployee ft = new FullTimeEmployee();
+        //ft.InputFullTime();
+        //ft.getInfo();
+        Company c = new Company();
+        c.AddFullTime();
+        c.ShowAllFull();
+        c.Edit();
+        c.ShowAllEmployee();      
     }
 }

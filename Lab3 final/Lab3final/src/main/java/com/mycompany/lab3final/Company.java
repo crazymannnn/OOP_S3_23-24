@@ -41,26 +41,30 @@ public class Company {
     
     public void ShowAllFull() {
         for (int i = 0; i < fulltimes.size(); i++) {
-            fulltimes.get(i).OutputFullTime();
+            //fulltimes.get(i).OutputFullTime();
+            fulltimes.get(i).getInfo();
             System.out.println("----------------");
-        }
+        }       
     }
     
     public void ShowAllPart() {
         for (int i = 0; i < parttimes.size(); i++) {
-            parttimes.get(i).OutputPartTime();
+            //parttimes.get(i).OutputPartTime();
+            parttimes.get(i).getInfo();
             System.out.println("----------------");
         }
     }
     
     public void ShowAllEmployee() {
         for (int i = 0; i < parttimes.size(); i++) {
-            parttimes.get(i).OutputPartTime();
+            //parttimes.get(i).OutputPartTime();
+            parttimes.get(i).getInfo();
             System.out.println("----------------");
         }
         
         for (int i = 0; i < fulltimes.size(); i++) {
-            fulltimes.get(i).OutputFullTime();
+            //fulltimes.get(i).OutputFullTime();
+            fulltimes.get(i).getInfo();
             System.out.println("----------------");
         }
     }
@@ -71,14 +75,14 @@ public class Company {
         String s = sc.next();
         for (int i = 0; i < fulltimes.size(); i++) {
             if (fulltimes.get(i).getId().equals(s)) {
-                fulltimes.get(i).OutputFullTime();
+                fulltimes.get(i).getInfo();
                 break;
             }
         }
         
         for (int i = 0; i < parttimes.size(); i++) {
             if (parttimes.get(i).getId().equals(s)) {
-                parttimes.get(i).OutputPartTime();
+                parttimes.get(i).getInfo();
                 break;
             }
         }
@@ -109,7 +113,48 @@ public class Company {
         String s = sc.next();
         for (int i = 0; i < fulltimes.size(); i++) {
             if (fulltimes.get(i).getId().equals(s)) {
-                
+                System.out.println("nhap ten moi: ");
+                var name = sc.next();
+                System.out.println("nhap nam moi");
+                var year = sc.nextInt();
+                System.out.println("nhap dia chi moi");
+                var address = sc.next();
+                System.out.println("nhap sdt moi: ");
+                var phone = sc.next();
+                System.out.println("nhap luong moi: ");
+                var salary = sc.nextFloat();
+                fulltimes.get(i).setName(name);
+                fulltimes.get(i).setYear(year);
+                fulltimes.get(i).setAddress(address);
+                fulltimes.get(i).setPhone(phone);
+                fulltimes.get(i).setSalary(salary);
+                fulltimes.get(i).OutputFullTime();
+                break;
+            }
+        }
+        for (int i = 0; i < parttimes.size(); i++) {
+            if (parttimes.get(i).getId().equals(s)) {
+                System.out.println("nhap ten moi: ");
+                var name = sc.next();
+                System.out.println("nhap nam moi");
+                var year = sc.nextInt();
+                System.out.println();
+                System.out.println("nhap dia chi moi");
+                var address = sc.next();
+                System.out.println("nhap sdt moi: ");
+                var phone = sc.next();
+                System.out.println("nhap working hour moi: ");
+                var workingHour = sc.nextInt();
+                System.out.println("nhap payrate moi: ");
+                var payRate = sc.nextFloat();
+                parttimes.get(i).setName(name);
+                parttimes.get(i).setYear(year);
+                parttimes.get(i).setAddress(address);
+                parttimes.get(i).setPhone(phone);
+                parttimes.get(i).setWorkingHour(workingHour);
+                parttimes.get(i).setPayRate(payRate);
+                parttimes.get(i).OutputPartTime();
+                break;
             }
         }
     }

@@ -47,12 +47,14 @@ public class PartTimeEmployee extends Employee {
     
     @Override
     public void getInfo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        super.Output();
+        System.out.println("Working hour: " + workingHour);
+        System.out.println("Pay rate: " + payRate);
     }
 
     @Override
-    public void getPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public float getPayment() {
+        return this.payRate * this.workingHour;
     }
     
      public void InputPartTime() {

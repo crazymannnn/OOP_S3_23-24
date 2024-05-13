@@ -19,6 +19,7 @@ public class Store {
     ArrayList<CD> cds = new ArrayList<>();
     public void Input() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("So luong CD ban muon nhap: ");
         int n = sc.nextInt();
         for (int i = 0; i < n; i++) {
             var cd = new CD();
@@ -106,7 +107,7 @@ public class Store {
                 cds.get(i).setTitle(title);
                 cds.get(i).setPrice(price);
                 cds.get(i).setYear(year);
-                cds.get(0).OutputCD();
+                cds.get(i).OutputCD();
             }
             break;
         }        

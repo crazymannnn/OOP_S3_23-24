@@ -17,7 +17,7 @@ public abstract class Employee {
     private String address;
     private String phone;
     public abstract void getInfo();
-    public abstract void getPayment();
+    public abstract float getPayment();
 
     public Employee() {
     }

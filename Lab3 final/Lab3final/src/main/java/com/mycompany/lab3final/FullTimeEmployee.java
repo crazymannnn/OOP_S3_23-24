@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab3final;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -37,12 +38,13 @@ public class FullTimeEmployee extends Employee {
 
     @Override
     public void getInfo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        super.Output();
+        System.out.println("salary: " + salary);
     }
 
     @Override
-    public void getPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public float getPayment() {
+        return this.salary;
     }
     
     public void InputFullTime() {

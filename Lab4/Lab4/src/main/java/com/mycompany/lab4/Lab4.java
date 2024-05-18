@@ -90,9 +90,6 @@ public class Lab4 {
         */
         
         //Q3:
-        School school = new School();
-        school.AddCollege();
-        school.AddUniversity();
-        school.Print();
+        
     }
 }

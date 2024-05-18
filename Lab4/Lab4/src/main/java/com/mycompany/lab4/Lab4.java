@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.Vector;
 
 /**
  *
@@ -89,5 +90,9 @@ public class Lab4 {
         */
         
         //Q3:
+        School school = new School();
+        school.AddCollege();
+        school.AddUniversity();
+        school.Print();
     }
 }

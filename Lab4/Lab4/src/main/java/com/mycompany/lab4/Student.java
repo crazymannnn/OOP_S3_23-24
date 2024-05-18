@@ -73,10 +73,10 @@ public abstract class Student {
     }
     
     public void Output() {
-        System.out.println("Enter student number: ");
-        System.out.println("Enter student full name: ");
-        System.out.println("Enter student credit: ");
-        System.out.println("Enter student avr score: ");
+        System.out.println("student number: " + number);
+        System.out.println("full name: " + fullName);
+        System.out.println("student credit: " + credits);
+        System.out.println("student avr score: " + avrScore);
     }
     
 }

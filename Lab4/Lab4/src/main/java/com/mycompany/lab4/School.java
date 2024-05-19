@@ -38,7 +38,7 @@ public class School {
     }
     
     public void RemoveByCode() {
-        System.out.println("nhap so luong university");
+        System.out.println("nhap id ban muon xoa");
         String code = sc.next();
         for (int i = 0;  i < students.size(); i++) {
             if (students.get(i).getNumber().equals(code)) {
@@ -69,5 +69,15 @@ public class School {
                 return s1.getNumber().compareTo(s2.getNumber());
             return s1.getClass().toString().compareTo(s2.getClass().toString());         
         });
+    }
+
+    public void FindByName() {
+        System.out.println("nhap ten ban muon tim kiem");
+        var name = sc.next();
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getFullName().equals(name)) {
+                students.get(i).Output();
+            }
+        }
     }
 }

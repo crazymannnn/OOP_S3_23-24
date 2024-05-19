@@ -90,6 +90,45 @@ public class Lab4 {
         */
         
         //Q3:
-        
+        School school = new School();
+        int x;
+        do {
+            System.out.println("Menu");
+            System.out.println("1. ADD COLLEGE ");
+            System.out.println("2. ADD UNIVERSITY");
+            System.out.println("3. REMOVE BY ID");
+            System.out.println("4. PRINT");
+            System.out.println("5. PRINT GRADUATION STUDENT");
+            System.out.println("6. SORT");
+            System.out.println("7. FIND STUDENT BY NAME");
+            System.out.println("8. EXIT");
+            x = sc.nextInt();
+            switch(x) {
+                case 1:
+                    school.AddCollege();
+                    break;
+                case 2:
+                    school.AddUniversity();
+                    break;
+                case 3: 
+                    school.RemoveByCode();
+                    break;
+                case 4:
+                    school.Print();
+                    break;
+                case 5:
+                    school.PrintGraduationStudent();
+                    break;
+                case 6:
+                    school.SortStudent();
+                    break;
+                case 7:
+                    school.FindByName();
+                    break;
+                case 8:
+                    System.out.println("existinggg");
+                    break;
+            }
+        } while (x != 8);
     }
 }

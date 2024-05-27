@@ -62,4 +62,8 @@ public class Specialists extends Staff {
         this.salary = salary;
     }
     
+    @Override
+    public void Input() {
+        
+    }
 }

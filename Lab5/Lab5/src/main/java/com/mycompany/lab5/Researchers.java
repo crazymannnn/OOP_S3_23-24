@@ -5,6 +5,8 @@
 package com.mycompany.lab5;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  *
@@ -62,4 +64,17 @@ public class Researchers extends Staff {
         this.salary = salary;
     }
     
+    @Override //thieu input
+    public void Input() {
+        super.Input();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How many research project they have? ");       
+    }
+    
+    @Override
+    public void Output() {
+        super.Output();
+        System.out.println("the number of project they have: " + this.codes.size());
+        System.out.println("Salary: " + this.salary);
+    }
 }

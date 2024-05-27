@@ -5,6 +5,7 @@
 package com.mycompany.lab5;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Lecturers extends Staff {
     private String acaDegree;
     private int yearOfTeaching;
     private ArrayList<String> subjects = new ArrayList<>();
-    private double salary = subjects.size() * yearOfTeaching * 0.12 * 20000;
+    private double salary;
 
     public Lecturers() {
     }
@@ -73,4 +74,33 @@ public class Lecturers extends Staff {
         this.salary = salary;
     }
     
+    @Override
+    public void Input() {
+        Scanner sc = new Scanner(System.in);
+        super.Input();
+        System.out.println("Enter acaRank");
+        this.acaRack = sc.next();
+        System.out.println("Enter acaDegree");
+        this.acaDegree = sc.next();
+        System.out.println("Enter year of teaching");
+        this.yearOfTeaching = sc.nextInt();
+        System.out.println("how many subject they have?");
+        var k = sc.nextInt();
+        for (int i = 0; i < k; i++) {
+            this.subjects.add(sc.next());
+        }
+        this.salary = subjects.size() * yearOfTeaching * 0.12 * 20000;
+    }
+    
+    @Override
+    public void Output() {
+        super.Output();
+        System.out.println("acaRank: " + this.acaRack);
+        System.out.println("acaDegree: " + this.acaDegree);
+        System.out.println("yearOfTeaching: " + this.yearOfTeaching);
+        for (int i = 0; i < subjects.size(); i++) {
+            System.out.print(subjects.get(i) + " ");
+        }
+        System.out.println("Salary: " + this.salary);
+    }
 }

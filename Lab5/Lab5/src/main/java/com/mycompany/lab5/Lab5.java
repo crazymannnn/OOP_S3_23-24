@@ -63,5 +63,6 @@ public class Lab5 {
                     break;
             }
         } while (x != 8);
+        
     }
 }

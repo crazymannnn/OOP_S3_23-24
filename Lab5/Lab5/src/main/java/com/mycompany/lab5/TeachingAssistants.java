@@ -4,13 +4,15 @@
  */
 package com.mycompany.lab5;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ADMIN
  */
 public class TeachingAssistants extends Staff {
     private int numOfsubject;
-    private double salary = numOfsubject * 0.3 * 18000;
+    private double salary;
 
     public TeachingAssistants() {
     }
@@ -40,4 +42,19 @@ public class TeachingAssistants extends Staff {
         this.salary = salary;
     }
     
+    @Override
+    public void Input() {
+        super.Input();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Num of subject they assist? ");
+        this.numOfsubject = sc.nextInt();
+        this.salary = numOfsubject * 0.3 * 18000;
+    }
+    
+    @Override
+    public void Output() {
+        super.Output();
+        System.out.println("Num of subject they assist: " + this.numOfsubject);
+        System.out.println("Salary: " + this.salary);
+    }
 }

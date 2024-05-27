@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab5;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ADMIN
@@ -44,5 +46,20 @@ public class Staff {
 
     public void setId(String id) {
         this.id = id;
+    }
+    public void Input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter full name: ");
+        this.fullName = sc.next();
+        System.out.println("Enter day of birth: ");
+        this.dob = sc.next();
+        System.out.println("Enter personal ID: ");
+        this.id = sc.next();
+    }
+    
+    public void Output() {
+        System.out.println("Full name: " + this.fullName);
+        System.out.println("Day of birth: " + this.dob);
+        System.out.println("Personal ID: " + this.id);
     }
 }

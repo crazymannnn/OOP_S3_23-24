@@ -91,7 +91,7 @@ public class School  {
     
     public void WriteFile() {
         try {
-            FileOutputStream f = new FileOutputStream("D:\\student.dat");
+            FileOutputStream f = new FileOutputStream("C:\\java file\\student.dat");
             ObjectOutputStream oStream = new ObjectOutputStream(f);
             for (var student : students) {
                 oStream.writeObject(student);
@@ -104,7 +104,7 @@ public class School  {
     
     public void ReadFile() {
         try {
-            FileInputStream f = new FileInputStream("D:\\student.dat");
+            FileInputStream f = new FileInputStream("C:\\java file\\student.dat");
             ObjectInputStream inStream = new ObjectInputStream(f);
             Student st = null;
             while ((st=(Student)inStream.readObject()) != null) {
@@ -118,9 +118,9 @@ public class School  {
         }
     }
     
-    public void WriteFile() {
+    public void WriteFileResult() {
         try {
-            FileOutputStream f = new FileOutputStream("D:\\student.dat");
+            FileOutputStream f = new FileOutputStream("D:\\result.dat");
             ObjectOutputStream oStream = new ObjectOutputStream(f);
             for (var student : students) {
                 oStream.writeObject(student);
@@ -131,9 +131,9 @@ public class School  {
         }
     }
     
-    public void ReadFile() {
+    public void ReadFileResult() {
         try {
-            FileInputStream f = new FileInputStream("D:\\student.dat");
+            FileInputStream f = new FileInputStream("D:\\result.dat");
             ObjectInputStream inStream = new ObjectInputStream(f);
             Student st = null;
             while ((st=(Student)inStream.readObject()) != null) {
@@ -146,4 +146,5 @@ public class School  {
             System.out.println("error read file");
         }
     }
+    
 }

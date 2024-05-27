@@ -17,10 +17,6 @@ public class Lab5 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        /*School s = new School();
-        s.ReadFile();
-        s.Print();*/
         School school = new School();
         school.ReadFile();
         int x;
@@ -60,6 +56,7 @@ public class Lab5 {
                     break;
                 case 7:
                     school.FindByName();
+                    school.WriteFileResult();
                     break;
                 case 8:
                     System.out.println("existinggg");

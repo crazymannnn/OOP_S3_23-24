@@ -17,6 +17,7 @@ public class Lab5 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        /*
         School school = new School();
         school.ReadFile();
         int x;
@@ -63,6 +64,9 @@ public class Lab5 {
                     break;
             }
         } while (x != 8);
-        
+*/
+        Researchers re = new Researchers();
+        re.Input();
+        re.Output();
     }
 }

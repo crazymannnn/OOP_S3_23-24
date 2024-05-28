@@ -68,7 +68,26 @@ public class Researchers extends Staff {
     public void Input() {
         super.Input();
         Scanner sc = new Scanner(System.in);
-        System.out.println("How many research project they have? ");       
+        System.out.println("How many research project they have? ");
+        int k = sc.nextInt();
+        while(true && k > 0) {
+            try {
+                System.out.println("enter project code: ");
+                var n = sc.next();
+                codes.add(n);
+                if (!(Character.isLetter(n.charAt(0)) && Character.isDigit(n.charAt(1)) && Character.isDigit(n.charAt(2)))) {
+                    throw new Exception("Wrong projectcode");
+                } else {
+                    k--;
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid input. Please enter again:  ");
+                sc.nextLine();
+            } catch (Exception ex) {
+                System.out.println("Invalid project code format. Please enter again: ");
+                sc.nextLine();
+            }
+        }
     }
     
     @Override

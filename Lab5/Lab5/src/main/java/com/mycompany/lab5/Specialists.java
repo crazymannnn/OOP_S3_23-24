@@ -5,6 +5,8 @@
 package com.mycompany.lab5;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  *
@@ -63,7 +65,35 @@ public class Specialists extends Staff {
     }
     
     @Override
-    public void Input() {
-        
+    public void Input() { //input chua xong
+        super.Input();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("how many edicational project they have? ");
+        int k = sc.nextInt();
+        while(true && k > 0) {
+            try {
+                System.out.println("enter project code: ");
+                var n = sc.next();
+                codes.add(n);
+                if (!(Character.isLetter(n.charAt(0)) && Character.isDigit(n.charAt(1)) && Character.isDigit(n.charAt(2)))) {
+                    throw new Exception("Wrong projectcode");
+                } else {
+                    k--;
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid input. Please enter again:  ");
+                sc.nextLine();
+            } catch (Exception ex) {
+                System.out.println("Invalid project code format. Please enter again: ");
+                sc.nextLine();
+            }
+        }
+    }
+    
+    @Override
+    public void Output() {
+        super.Output();
+        System.out.println("The number of project they have: " + this.codes.size());
+        System.out.println("Salary: " + this.salary);
     }
 }

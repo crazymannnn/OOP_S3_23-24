@@ -16,14 +16,15 @@ public class Researchers extends Staff {
     private ArrayList<String> codes = new ArrayList<>();
     private int numOfYear;
     private double salary;
-    public void Salary() {
+    @Override
+    public int Salary() {
         int count = 0;
         for (int i = 0; i < codes.size(); i++) {
             if (codes.get(i).startsWith("D")) {
                 count++;
             }
         }
-        this.salary = (numOfYear * 2 + count) * 20000;
+        return (numOfYear * 2 + count) * 20000;
     }
 
     public Researchers() {
@@ -63,11 +64,10 @@ public class Researchers extends Staff {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    
+    static Scanner sc = new Scanner(System.in);
     @Override //thieu input
     public void Input() {
         super.Input();
-        Scanner sc = new Scanner(System.in);
         System.out.println("How many research project they have? ");
         int k = sc.nextInt();
         while(true && k > 0) {
@@ -88,12 +88,15 @@ public class Researchers extends Staff {
                 sc.nextLine();
             }
         }
+        System.out.println("How many year do they work? ");
+        this.numOfYear = sc.nextInt();
     }
     
     @Override
     public void Output() {
         super.Output();
         System.out.println("the number of project they have: " + this.codes.size());
-        System.out.println("Salary: " + this.salary);
+        System.out.println("Year of work: " + this.numOfYear);
+        System.out.println("Salary: " + this.Salary());
     }
 }

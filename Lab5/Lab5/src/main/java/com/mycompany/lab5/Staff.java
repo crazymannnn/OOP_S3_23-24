@@ -62,4 +62,8 @@ public class Staff {
         System.out.println("Day of birth: " + this.dob);
         System.out.println("Personal ID: " + this.id);
     }
+    
+    public int Salary() {
+        return 0;
+    };
 }

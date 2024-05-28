@@ -17,6 +17,10 @@ public class Lecturers extends Staff {
     private int yearOfTeaching;
     private ArrayList<String> subjects = new ArrayList<>();
     private double salary;
+    @Override
+    public int Salary() {
+        return (int)(subjects.size() * yearOfTeaching * 0.12 * 20000);
+    }
 
     public Lecturers() {
     }
@@ -89,7 +93,6 @@ public class Lecturers extends Staff {
         for (int i = 0; i < k; i++) {
             this.subjects.add(sc.next());
         }
-        this.salary = subjects.size() * yearOfTeaching * 0.12 * 20000;
     }
     
     @Override
@@ -101,6 +104,6 @@ public class Lecturers extends Staff {
         for (int i = 0; i < subjects.size(); i++) {
             System.out.print(subjects.get(i) + " ");
         }
-        System.out.println("Salary: " + this.salary);
+        System.out.println("Salary: " + this.Salary());
     }
 }

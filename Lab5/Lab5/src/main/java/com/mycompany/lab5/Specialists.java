@@ -16,14 +16,15 @@ public class Specialists extends Staff {
     private ArrayList<String> codes = new ArrayList<>();
     private int yearOfWork;
     private double salary;
-    public void Salary() {
+    @Override
+    public int Salary() {
         int count = 0;
         for (int i = 0; i < codes.size(); i++) {
             if (codes.get(i).startsWith("T")) {
                 count++;
             }
         }
-        this.salary = (yearOfWork * 4 + count) * 18000;
+        return (yearOfWork * 4 + count) * 18000;
     }
 
     public Specialists() {
@@ -88,12 +89,15 @@ public class Specialists extends Staff {
                 sc.nextLine();
             }
         }
+        System.out.println("how many year do they work?");
+        this.yearOfWork = sc.nextInt();
     }
     
     @Override
     public void Output() {
         super.Output();
         System.out.println("The number of project they have: " + this.codes.size());
-        System.out.println("Salary: " + this.salary);
+        System.out.println("Year of work: " + this.yearOfWork);
+        System.out.println("Salary: " + this.Salary());
     }
 }

@@ -48,7 +48,6 @@ public class TeachingAssistants extends Staff {
         Scanner sc = new Scanner(System.in);
         System.out.println("Num of subject they assist? ");
         this.numOfsubject = sc.nextInt();
-        this.salary = numOfsubject * 0.3 * 18000;
     }
     
     @Override
@@ -56,5 +55,10 @@ public class TeachingAssistants extends Staff {
         super.Output();
         System.out.println("Num of subject they assist: " + this.numOfsubject);
         System.out.println("Salary: " + this.salary);
+    }
+    
+    @Override
+    public int Salary() {
+        return (int)(this.getNumOfsubject() * 0.3 * 18);
     }
 }

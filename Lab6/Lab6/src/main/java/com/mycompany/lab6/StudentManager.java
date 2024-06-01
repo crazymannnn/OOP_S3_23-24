@@ -47,4 +47,8 @@ public class StudentManager {
     public ArrayList<Student> getListStudent() {
         return students;
     }
+    
+    public StudentTableModel getStudentTableModel() {
+        return null;
+    }
 }

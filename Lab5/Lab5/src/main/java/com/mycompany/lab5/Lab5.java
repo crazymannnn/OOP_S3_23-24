@@ -76,7 +76,7 @@ public class Lab5 {
             System.out.println("5. FIND EDIT BY ID");
             System.out.println("6. REMOVE BY ID");
             System.out.println("7. CALCULATE TOTAL SALARY");
-            System.out.println("8. TOTAL SALARY BY TYPE");
+            System.out.println("8. Statistic");
             System.out.println("9. 3 HIGHEST SALARY");
             System.out.println("10. PRINT");
             System.out.println("11. EXIT");

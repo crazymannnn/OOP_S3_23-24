@@ -4,6 +4,9 @@
  */
 package com.mycompany.lab6;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -49,6 +52,28 @@ public class StudentManager {
     }
     
     public StudentTableModel getStudentTableModel() {
-        return null;
+        StudentTableModel model = new StudentTableModel();
+        return model;
+    }
+    
+    public void removeStudent(String id) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getStudentId().equals(id)) {
+                students.remove(students.get(i));
+            }
+        }
+    }
+    
+    public void writeFile() {
+        try {
+            FileOutputStream f = new FileOutputStream("C:\\java file");
+            ObjectOutputStream oStream = new ObjectOutputStream(f);
+            for (Student stu : students) {
+                oStream.writeObject(stu);
+            }
+            oStream.close();
+        } catch (IOException e) {
+            System.out.println("Error write file");
+        }
     }
 }

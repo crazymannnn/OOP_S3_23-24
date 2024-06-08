@@ -15,6 +15,5 @@ public class Lab6 {
         frame.setVisible(true);
         //NewStudentDialog newStudent = new NewStudentDialog("New Student");
         //newStudent.setVisible(true);
-        int a = 1;
     }
 }

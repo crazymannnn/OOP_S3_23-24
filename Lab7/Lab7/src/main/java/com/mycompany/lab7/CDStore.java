@@ -4,8 +4,17 @@
  */
 package com.mycompany.lab7;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 
 /**
@@ -54,7 +63,7 @@ public class CDStore extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         Title = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        inputid = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -198,13 +207,13 @@ public class CDStore extends javax.swing.JFrame {
         });
         jPanel5.add(Title);
 
-        jTextField2.setText("jTextField2");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        inputid.setPreferredSize(new java.awt.Dimension(200, 22));
+        inputid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTextField(evt);
             }
         });
-        jPanel5.add(jTextField2);
+        jPanel5.add(inputid);
 
         jButton12.setText("Search");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -219,20 +228,21 @@ public class CDStore extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -254,11 +264,28 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_NewCD
 
     private void BackUp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackUp
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser("D:\\");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".EIU Files", "eiu");
+        fc.setFileFilter(filter);
+        int option = fc.showSaveDialog(null);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            String filename = fc.getSelectedFile().toString();
+            if (!filename.endsWith(".eiu")) {
+                filename += ".eiu";
+            }
+            writeTo(filename);
+        }
     }//GEN-LAST:event_BackUp
 
     private void Delete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete
-        int 
+        int selected = table.getSelectedRow();
+        if (selected != -1) {
+            int answer = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this row?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (answer == JOptionPane.YES_OPTION) {
+                newCD.Remove((String) table.getValueAt(selected, 0));
+                refreshModel();
+            }
+        }
     }//GEN-LAST:event_Delete
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -274,7 +301,14 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_TitleCombobox
 
     private void Restore(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restore
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser("D:\\");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".EIU Files", "eiu");
+        fc.setFileFilter(filter);
+        int option = fc.showOpenDialog(null);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            readFrom(fc.getSelectedFile().getAbsolutePath());
+            refreshModel();
+        }
     }//GEN-LAST:event_Restore
 
     private void Refresh(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Refresh
@@ -282,7 +316,16 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_Refresh
 
     private void Search(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search
-        // TODO add your handling code here:
+        var sellected = inputid.getText();
+        var lists = newCD.getListCD();
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists.get(i).getId().equals(sellected)) {
+                model.setRowCount(0);
+                Object[] data = {lists.get(i).getTitle(), lists.get(i).getCollection(), lists.get(i).getType(), lists.get(i).getPrice()};
+                model.addRow(data);
+                table.setModel(model);
+            }
+        }
     }//GEN-LAST:event_Search
 
     private void JTextField(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextField
@@ -343,9 +386,38 @@ public class CDStore extends javax.swing.JFrame {
         clearModel();
         fillIntable();
     }
+    
+    public void writeTo(String path){
+        try {
+            FileOutputStream f = new FileOutputStream(path);
+            ObjectOutputStream oStream = new ObjectOutputStream(f);
+            for (CD cd : newCD.getListCD()) {
+                oStream.writeObject(cd);
+            }
+            oStream.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void readFrom(String path){
+        try {
+            FileInputStream f = new FileInputStream(path);
+            ObjectInputStream iStream = new ObjectInputStream(f);
+            CD cd = null;
+            while ((cd = (CD)iStream.readObject()) != null){
+                newCD.addCD(cd);
+            }
+            iStream.close();
+        }catch (ClassNotFoundException e){
+            System.out.println("Class not found");
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Title;
+    private javax.swing.JTextField inputid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -368,7 +440,6 @@ public class CDStore extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

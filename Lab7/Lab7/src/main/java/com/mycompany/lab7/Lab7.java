@@ -11,7 +11,7 @@ package com.mycompany.lab7;
 public class Lab7 {
 
     public static void main(String[] args) {
+        //cdstore = mainframe
         new CDStore().setVisible(true);
-        System.out.println("cc");
     }
 }

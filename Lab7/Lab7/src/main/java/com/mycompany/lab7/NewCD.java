@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
  * @author Student
  */
 public class NewCD extends javax.swing.JFrame {
+
     static ArrayList<CD> cds = new ArrayList<>();
+
     /**
      * Creates new form NewCD
      */
@@ -29,6 +31,7 @@ public class NewCD extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
@@ -132,6 +135,11 @@ public class NewCD extends javax.swing.JFrame {
         jPanel7.add(jButton2);
 
         jButton3.setText("SHOW ALL");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jButton3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,7 +154,7 @@ public class NewCD extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -207,7 +215,7 @@ public class NewCD extends javax.swing.JFrame {
         var titleCD = title.getText();
         var collectionCD = combo.getSelectedItem().toString();
         var type = "";
-        if (vcd.isSelected()) {
+        /*if (vcd.isSelected() ) {
             type = "vcd";
         } else {
             type = "cd";
@@ -220,11 +228,42 @@ public class NewCD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Success", "Message", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Already Existed", "message", JOptionPane.INFORMATION_MESSAGE);
+        }*/
+
+        if (vcd.isSelected() && cd.isSelected() || !vcd.isSelected() && !cd.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Error", "Message", JOptionPane.INFORMATION_MESSAGE);
+        } else if (cd.isSelected()) {
+            type = "cd";
+            var priceCD = price.getText();
+            var yearCD = year.getText();
+            //cds.add(new CD(cdID, collectionCD, type, titleCD,Integer.parseInt(priceCD), Integer.parseInt(yearCD)));
+            var newCD = new CD(cdID, collectionCD, type, titleCD, Integer.parseInt(priceCD), Integer.parseInt(yearCD));
+            if (addCD(newCD)) {
+                JOptionPane.showMessageDialog(null, "Success", "Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Already Existed", "message", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            type = "vcd";
+            var priceCD = price.getText();
+            var yearCD = year.getText();
+            //cds.add(new CD(cdID, collectionCD, type, titleCD,Integer.parseInt(priceCD), Integer.parseInt(yearCD)));
+            var newCD = new CD(cdID, collectionCD, type, titleCD, Integer.parseInt(priceCD), Integer.parseInt(yearCD));
+            if (addCD(newCD)) {
+                JOptionPane.showMessageDialog(null, "Success", "Message", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Already Existed", "message", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnAdd
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ShowAll();
+    }//GEN-LAST:event_jButton3ActionPerformed
     public ArrayList<CD> getListCD() {
         return cds;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -259,7 +298,7 @@ public class NewCD extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public boolean addCD(CD cd) {
         for (int i = 0; i < cds.size(); i++) {
             if (cds.get(i).getId().equals(cd.getId())) {
@@ -269,14 +308,24 @@ public class NewCD extends javax.swing.JFrame {
         cds.add(cd);
         return true;
     }
-    
+
     public void ShowAll() {
         for (int i = 0; i < cds.size(); i++) {
             System.out.println("CD ID is: " + cds.get(i).getId() + "\n");
         }
     }
 
+    public void Remove(String id) {
+        for (int i  = 0; i < cds.size(); i++) {
+            if (cds.get(i).getId().equals(id)) {
+                cds.remove(cds.get(i));
+                break;
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton cd;
     private javax.swing.JComboBox<String> combo;
     private javax.swing.JTextField id;
